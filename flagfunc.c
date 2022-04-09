@@ -10,49 +10,61 @@ void setup(Player playerArray[]){
         setupPlayer(&newPlayer);
         playerArray[i] = newPlayer;
     }
-
     drawBackground();
 }
 
+void showMenu(){
+    gfx_text(WINDOWX/2-50, WINDOWY/3, "CAPTURE THE FLAG");
+    gfx_text(WINDOWX/2-25, WINDOWY*3/4, "START");
+
+    char c = 0;
+    while(1){
+        if(c == 'q') break;
+        if(c == 1){
+            if(gfx_xpos() > 50 && gfx_ypos() > WINDOWY/2 && gfx_xpos() < WINDOWX-50 && gfx_ypos() < WINDOWY){
+                return;
+            }
+        }
+        if(gfx_event_waiting()){
+            c = gfx_wait();
+        }
+    }
+}
+
 void update(Player playerArray[]){
-    char w, a, s, d, i, j, k, l, q; 
+    char a, b, c, d; 
     int timer = 0;
     while(1){
-        if(q == 'q') break;
-        //can't use switch so we get multiple inputs
-        if(w == 'w') playerArray[0].vy = PSPEED;
-        if(a == 'a') playerArray[0].vx = -PSPEED;
-        if(s == 's') playerArray[0].vy = -PSPEED;
-        if(d == 'd') playerArray[0].vx = PSPEED;
+        if(a == 'q' || b == 'q' || c == 'q' || d == 'q') break;
+        
+        if(a == 'w' || b == 'w' || c == 'w' || d == 'w') playerArray[0].vy = -PSPEED;
+        if(a == 'a' || b  == 'a' || c == 'a' || d == 'a') playerArray[0].vx = -PSPEED;
+        if(a == 's' || b  == 's' || c == 's' || d == 's') playerArray[0].vy = PSPEED;
+        if(a == 'd' || b  == 'd' || c == 'd' || d == 'd') playerArray[0].vx = PSPEED;
 
-        if(i == 'i') playerArray[1].vy = PSPEED;
-        if(j == 'j') playerArray[1].vx = -PSPEED;
-        if(k == 'k') playerArray[1].vy = -PSPEED;
-        if(l == 'l') playerArray[1].vx = PSPEED;
+        if(a == 'i' || b == 'i' || c == 'i' || d == 'i') playerArray[1].vy = -PSPEED;
+        if(a == 'j' || b  == 'j' || c == 'j' || d == 'j') playerArray[1].vx = -PSPEED;
+        if(a == 'k' || b  == 'k' || c == 'k' || d == 'k') playerArray[1].vy = PSPEED;
+        if(a == 'l' || b  == 'l' || c == 'l' || d == 'l') playerArray[1].vx = PSPEED;
 
         //reset
-        w = 0;
         a = 0;
-        s = 0;
+        b = 0;
+        c = 0;
         d = 0;
-        i = 0;
-        j = 0;
-        k = 0;
-        l = 0;
         
-        while(gfx_event_waiting()){
-            printf("hi");
-            if(gfx_wait() == 'w') w = 'w';
-            if(gfx_wait() == 'a') w = 'a';
-            if(gfx_wait() == 's') w = 's';
-            if(gfx_wait() == 'd') w = 'd';
-            if(gfx_wait() == 'i') w = 'i';
-            if(gfx_wait() == 'j') w = 'j';
-            if(gfx_wait() == 'k') w = 'k';
-            if(gfx_wait() == 'l') w = 'l';
-            if(gfx_wait() == 'q') q = 'q';        
+        if(gfx_event_waiting()){
+            a = gfx_wait();
         }
-
+        if(gfx_event_waiting()){
+            b = gfx_wait();
+        }
+        if(gfx_event_waiting()){
+            c = gfx_wait();
+        }
+        if(gfx_event_waiting()){
+            d = gfx_wait();
+        }
 
         if(timer == 1000){
             fixedUpdate(playerArray);

@@ -17,6 +17,19 @@ typedef struct {
     int vy;
 } Player;
 
+typedef struct {
+    int pickedUp;
+    int x;
+    int y;
+} Flag;
+
+typedef struct {
+    int length;
+    int x;
+    int y;
+} Wall;
+
+void showMenu();
 void setup(Player []);
 void update(Player []);
 void fixedUpdate(Player []);
