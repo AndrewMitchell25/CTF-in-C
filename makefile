@@ -2,7 +2,7 @@ CMP = gcc
 MAIN = flag
 FUNC = flagfunc
 EXEC = ctf
-GFX = gfx
+GFX = gfx2
 
 $(EXEC): $(FUNC).o $(MAIN).o $(GFX).o
 	$(CMP) $(FUNC).o $(MAIN).o $(GFX).o -lX11 -lm -o $(EXEC)
